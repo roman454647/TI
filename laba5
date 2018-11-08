@@ -1,0 +1,86 @@
+import math
+import time
+import random
+from random import randint
+def task1(n):
+    a = [0]*n
+    a1 =[0]*(n+1)
+    tmp =0
+
+    print("ENter code")
+
+    arr = input()  # takes the whole line of n numbers
+    a = list(map(int, arr.split(' ')))
+    a1 = [int(i) for i in a]
+    a1.append(0)
+
+    print("zakodovane  ")
+
+    tmp = sum(a)
+
+    if((tmp%2)==0):
+        print(a1)
+    else:
+        a1[n]=1
+        print(a1)
+
+    print("zakodovane slovo z pomulk ")
+
+    random.seed()
+    if(randint()%10<5):
+        if(a1[0] == 0):
+            a1[0]=1
+        else:
+            a1[0] =0
+    tmp1 =sum(a1)
+    print(a1)
+
+    if(tmp1%2 != 0):
+        print("EROOOR")
+    else:
+        print("NOT ERROR")
+
+
+    print( "more?")
+    v  = int(input())
+    if(v==1):
+        print("number a digit in codeworld")
+        k = int(input())
+        task1(k)
+    else:
+        return
+
+def task2(n):
+    random.seed()
+    print("ENter code")
+
+    arr = input()  # takes the whole line of n numbers
+    a = list(map(int, arr.split(' ')))
+
+    a1 = [0]*n*2
+
+    print("Zakodovane slovo")
+    tmp = sum(a)
+    if((tmp%2)==0):
+        for i in range(0,n):
+            a1[i] = a[i]
+            a1[i+n]=a[i]
+
+        print(a1)
+    else:
+        for i in range(n):
+            a1[i] = a[i]
+            if(a[i]==0):a[i]=1
+            else:a[i]=0
+            a1[i+n]=a[i]
+        print(a1)
+
+    print(" kod with error  ")
+    if(randint()%10<5):
+        if(a1[0] ==0):
+            a1[0]=1
+        else:
+
+
+
+
