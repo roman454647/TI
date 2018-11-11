@@ -11,7 +11,9 @@ def task1(n):
 
     arr = input()  # takes the whole line of n numbers
     a = list(map(int, arr.split(' ')))
+    print(a)
     a1 = [int(i) for i in a]
+    print(a1)
     a1.append(0)
 
     print("zakodovane  ")
@@ -27,7 +29,7 @@ def task1(n):
     print("zakodovane slovo z pomulk ")
 
     random.seed()
-    if(randint()%10<5):
+    if(randint(0,111)%10<5):
         if(a1[0] == 0):
             a1[0]=1
         else:
@@ -76,11 +78,238 @@ def task2(n):
         print(a1)
 
     print(" kod with error  ")
-    if(randint()%10<5):
+    if(randint(0,1000)%10<5):
         if(a1[0] ==0):
             a1[0]=1
         else:
+            a1[0]=0
+        print("error")
+    else:
+        print("without error")
+        print(a1)
 
+    print("more?")
+    v = int(input())
+    if (v == 1):
+        print("number a digit in codeworld")
+        k = int(input())
+        task2(k)
+    else:
+        return
 
+def task3(n):
+    p=0
+    random.seed()
+    print("enter a code")
+
+    arr = input()  # takes the whole line of n numbers
+    a = list(map(int, arr.split(' ')))
+
+    r = math.log2(p+1)
+    k =int(r)
+    f=0
+    if((r-k)!=0):
+        f=k+1
+    else:
+        f=k
+    tmp=0
+    a1 =[0]*(n+f)
+
+    print("zakodovane slovo")
+    tmp = sum(a)
+    for i in range(n):
+        a1[i] =a[i]
+    if(tmp ==0):
+        a1[n+f-1]=1
+        a1[n+f-2]=1
+    if(tmp ==1):
+        a1[n+f-1]=0
+        a1[n+f-2]=0
+    if(tmp ==2):
+        a1[n+f-1]=1
+        a1[n+f-2]=0
+    if(tmp ==3):
+        a1[n+f-1]=0
+        a1[n+f-2]=0
+    if(tmp ==4):
+        a1[n+f-1]=1
+        a1[n+f-2]=1
+        a1[n+f-3]=0
+    if(tmp==5):
+        a1[n+f-1]=0
+        a1[n+f-2]=1
+        a1[n+f-3]=0
+    print(a1)
+    print("ZAKODOVANE SLOVO Z ERROR")
+    if((tmp%2)==0):
+        if(a1[0]==0):
+            a1[0]=1
+        else:
+            a1[0]=0
+        print("ERROR")
+    else:
+        print("NO ERROR")
+    tmp1=0
+    print(a1)
+    tmp1= sum(a1)
+
+    print("more?")
+    v = int(input())
+    if (v == 1):
+        print("number a digit in codeworld")
+        k = int(input())
+        task3(k)
+    else:
+        return
+
+def task4(n):
+    print("enter a code")
+    stri = list(input())
+    for i in range(len(stri)):
+        if(stri[i] =='1'):
+            stri.insert(i+1,'0')
+        else:
+            stri.insert(i+1,'1')
+    print("ZAkodovane slovo  ")
+
+    print(''.join(stri))
+
+    stri1=stri
+
+    index = randint(0,100)%len(stri1)
+
+    if(randint(0,10000)%10<4):
+        if(stri1[index]=='1'):
+            stri1[index]='0'
+        else:
+            stri1[index]='1'
+    print("zakodovane slovo z error")
+    print(stri1)
+    stri2 = stri1
+    t =0
+
+    for i in range(len(stri2)-1):
+        if(stri2[i] != stri2[i+1]): tttt=0
+        else:
+            t =t+1
+        i =i+1
+    if(t!=0):
+        print("ERROR")
+    else:
+        print("NO ERROR")
+
+    print("more?")
+    v = int(input())
+    if (v == 1):
+        print("number a digit in codeworld")
+        k = int(input())
+        task4(k)
+    else:
+        return
+
+def task5(k):
+    a=b=c=d = [0]*20
+    sum =0
+    print("Enter code ")
+
+    arr = input()  # takes the whole line of n numbers
+    a = list(map(int, arr.split(' ')))
+
+    m=1
+    while((k+m+1)>=2**m):
+        m=m+1
+    n=k+m
+    j=1
+    r=0
+    for i in range(n):
+        p = 2**r
+        if(i==p):
+            b[i]=0
+            r=r+1
+        else:
+            b[i]=a[j]
+            j=j+1
+    p =0
+    for i in range(m+1):
+        x=2**p
+        r=1
+        for j in range(x,n+1,x*2):
+            for y in range(j,(j+x),1):
+                c[r]=b[y]
+                r=r+1
+        z=0
+        for y in range(1,r,1):
+            if(c[y]==1):
+                 z=z+1
+        if(z%2==0):
+            b[x]=0
+        else:
+            b[x]=1
+        for y in range(1,20):
+            c[y]=0
+        p=p+1
+    print("ZAkodovane slovo")
+    print(b)
+
+    while(1):
+        print("Enter 1 to chose a bit /0 to exit ")
+        ch =int(input())
+        if(ch==1):
+            print('ENTER A BIT WHICH YOU WANT TO CHANGE')
+            key = int(input())
+            for i in range(n+1):
+                if(i==key):
+                    if(b[key]==1):
+                        b[key]=0
+                    else:
+                        b[key]=1
+                    break
+
+            print("ZAkodovane slovo z EROOR")
+            print(b)
+        else:
+            break
+    p =0
+    q=0
+    for i in range(1,m+1):
+        x =2**p
+        r=1
+        for j in range(x,n+1,x*2):
+            for y in range(j,j+x):
+                c[r] =b[y]
+                r=r+1
+        z =0
+        for y in range(1,r):
+            if(c[y]==1):
+                z=z+1
+        v=z%2
+        d[q]=sum =sum+(v*(2**q))
+        q=q+1
+        for i in range(1,21):
+            c[y]=0
+        p=p+1
+    if(sum ==0):
+        print("BEZ EROOR")
+    else:
+        print(" Eroor ON POSItion")
+
+    print("more?")
+    v = int(input())
+    if (v == 1):
+        print("number a digit in codeworld")
+        k = int(input())
+        task4(k)
+    else:
+        return
+
+if __name__ == '__main__':
+    n=1
+    print("ENTER TH E NUMBER OF DIGIT OF THE CODEWORD")
+    n =int(input())
+    #task1(n)
+    #task2(n)
+    #task3(n)
+    #task4(n)
+    task5(n)
 
 
